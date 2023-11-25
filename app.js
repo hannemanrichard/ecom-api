@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
 
-app.use(cors());
+//app.use(cors());
 
 // app.get("/", (req, res) => {
 //   res.status(200).json({ message: "Get is not supported" });
@@ -152,7 +152,7 @@ app.post("/create", async (req, res) => {
 
     res.status(200).json(response.data);
   } catch (error) {
-    console.error(error);
+    console.error(error.response.data.error);
     res.status(500).send(error.message);
   }
 });
