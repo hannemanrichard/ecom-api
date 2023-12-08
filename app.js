@@ -103,6 +103,9 @@ app.post("/create", async (req, res) => {
     const stopdesk = +req.body.stopdesk;
     const price = req.body.price;
     const orderId = req.body.orderId;
+    const hasExchange = req.body.hasExchange ? req.body.hasExchange : false;
+    const productToCollect = req.body.productToCollect ? req.body.productToCollect : null; 
+    
     const url = "https://api.yalidine.app/v1/parcels/";
     console.log({
       order_id: `order_${orderId}`,
@@ -117,8 +120,8 @@ app.post("/create", async (req, res) => {
       freeshipping: true,
       is_stopdesk: isStopDesk,
       stopdesk_id: stopdesk,
-      has_exchange: 0,
-      product_to_collect: null,
+      has_exchange: hasExchange,
+      product_to_collect: productToCollect,
     });
     const data = [
       {
@@ -136,8 +139,8 @@ app.post("/create", async (req, res) => {
         stopdesk_id: stopdesk,
         do_insurance: false,
         declared_value: price > 5000 ? 5000 : price,
-        has_exchange: 0,
-        product_to_collect: null,
+        has_exchange: hasExchange,
+        product_to_collect: productToCollect,
       },
     ];
 
